@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+   <meta charset='UTF-8'>
+   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+   <title>扫地小孩专属模板</title>
+   <script src="../files/react.development.js"></script>
+   <script src="../files/react-dom.development.js"></script>
+   <script src="../files/babel.min.js"></script>
+</head>
+
+<body>
+   <div id='root'>
+
+   </div>
+   <script type='text/babel'>
+      /* 
+      1.创建函数式组件
+      注意:
+        函数名首字母一定要大写!(jsx首大小原则:标签大写代表组件,小写代表html元素)
+        函数名就是组件名!
+      */
+      function Mc() {
+         return <h1>hello react</h1>
+      }
+      /* 
+      2.渲染组件到页面
+      注意:
+        组件名首字母一定要大写,如果小写react会去寻找html元素,
+        这是jsx的规则:小写找元素,大写找组件(小元素,大组件)
+      */
+      ReactDOM.render(<Mc />, document.getElementById('root'))
+     //执行ReactDOM.render(<Mc/>...)之后发生了什么？
+     //1.React解析组件标签,找到了Mc组件
+     //2.发现组件是使用函数定义的,随后调用该函数，将函数返回的虚拟dom转换成
+     //真实dom,随后呈现在页面中
+   </script>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+   <meta charset='UTF-8'>
+   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>扫地小孩专属模板</title>
+</head>
+<body>
+    <div id="div1"></div>
+   <script>
+     /* 
+      dom操作会触发浏览器的 重绘 和 重排,重绘重排会消耗时间,影响性能,导致浏览器卡慢,
+      因此为了提升浏览器的性能,提高渲染的效率,我们需要尽量减少对dom的操作次数
+        重绘:元素外观改变会触发重绘 如color,visibility,font等属性
+        重排:元素尺寸或者位置改变会触发重排
+        重排比重绘更加影响性能
+      */
+       var times = 15000;
+ 
+ // 多次操作dom 触发重绘重排消耗时间 性能差
+ console.time('多次操作dom时间:');
+ for(var i = 0; i < times; i++) {
+  document.getElementById('div1').innerHTML += 'a';
+ }
+ console.timeEnd('多次操作dom时间:');
+  
+  
+ //不操作dom 只是每次给字符串多拼接一个a 耗时少 性能高
+ console.time('不操作dom时间:');
+ var str = '';
+ for(var i = 0; i < times; i++) {
+  str += 'a';
+ }
+ console.timeEnd('不操作dom时间:');
+
+ /* 
+ 虚拟dom的优势就是减少dom的操作次数提升渲染效率
+ 例如:页面上有1000个div现在要把其中10个div的innerHtml改变,
+ 如果用原生js方法去操作dom修改,就会把这1000个div重新渲染,这会触发太多次重绘重排
+ 严重影响浏览器性能  而使用虚拟dom,vue会找到变化的10个dom,只渲染这10个,极大的提升
+ 了浏览器的渲染效率
+  */
+
+</script>
+</body>
+</html>

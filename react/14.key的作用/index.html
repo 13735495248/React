@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='UTF-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <title>扫地小孩专属模板</title>
+  <script src="../files/react.development.js"></script>
+  <script src="../files/react-dom.development.js"></script>
+  <script src="../files/babel.min.js"></script>
+</head>
+
+<body>
+  <div id='root'>
+
+  </div>
+  <script type='text/babel'>
+    /* 
+    1.虚拟dom中key的作用:减少dom操作,提高渲染效率!
+      key是虚拟dom对象的唯一标志符
+      当状态中的数据发生变化时,react会根据【新数据】生成新的虚拟dom，
+      随后React进行【新虚拟DOM】与【旧虚拟DOM】的diff比较，比较规则如下：
+        a.旧虚拟dom中找到了与新虚拟dom相同的key：
+          (1).若虚拟dom中内容没变，直接使用之前的真实dom
+          (2).若虚拟dom中内容变了，则生成新的真实dom，随后替换掉页面之前的真实dom
+        b.旧虚拟dom中未找到与新虚拟dom相同的key:
+          根据数据创建新的真实dom，随后渲染到页面
+     
+     2.用index作为key可能会引发的问题:
+         1.若对数据进行:逆序添加、逆序删除等破坏顺序操作:
+           会产生没有必要的真实dom更新==>界面效果没问题,但效率低
+         2.如果结构中还包含输入类的dom
+           会产生错误dom更新==>导致界面错乱
+         3.注意！如果不存在对数据的逆序添加、逆序删除等破坏顺序操作，
+         仅用于渲染列表用于展示，使用index作为key是没有问题的  
+         
+     3.开发中如何选择key？
+       1.最好使用一个唯一标志作为key 比如id、手机号等    
+       2.如果确定只是简单的展示数据，用index也是可以的
+     */
+
+    /* 
+    !分析用index做key 虚拟dom前后变化
+    更新前虚拟dom:
+      <div key=0>刘备<input/></div> 输入框内容:刘备
+      <div key=1>关羽<input/></div> 输入框内容:关羽
+    更新后虚拟dom:
+      <div key=0>张飞<input/></div>1   
+      <div key=1>刘备<input/></div>1 
+      <div key=2>关羽<input/></div>1       
+    新旧虚拟dom比对生成真实的dom:
+      <div key=0>张飞<input/></div> 输入框内容:刘备  
+      <div key=1>刘备<input/></div> 输入框内容:关羽
+      <div key=2>关羽<input/></div> 输入框内容:空         
+    */
+
+    /*
+    !分析用唯一id做key 虚拟dom前后变化 
+    更新前虚拟dom:
+      <div key=0>刘备<input/></div> 输入框内容:刘备
+      <div key=1>关羽<input/></div> 输入框内容:关羽
+    更新后虚拟dom:
+      <div key=2>张飞<input/></div>1   
+      <div key=0>刘备<input/></div>0 
+      <div key=1>关羽<input/></div>0       
+    新旧虚拟dom比对生成真实的dom:
+      <div key=2>张飞<input/></div> 输入框内容:空  
+      <div key=0>刘备<input/></div> 输入框内容:刘备
+      <div key=1>关羽<input/></div> 输入框内容:关羽    
+    */
+    class Mc extends React.Component {
+      state = {
+        list: [
+          { id: 0, name: '刘备' },
+          { id: 1, name: '关羽' },
+
+        ]
+      }
+      add = (index) => {
+
+        let { list } = this.state;
+        list.unshift({ id: 2, name: '张飞' });
+        this.setState({ list })
+
+      }
+      /* 绑定点击事件并传参 */
+      render() {
+        const {list} = this.state;
+        return <div>
+          <h2>使用index做key</h2>
+          <button onClick={this.add}>添加</button>
+          {
+              list.map((item, index) => {
+              return <div key={index}>
+                {item.name}<input type="text" /> 
+              </div>
+
+            })
+          }
+          <div>-------------------------------</div>
+          <h2>使用唯一的id做key</h2>
+          {
+            this.state.list.map((item, index) => {
+              return <div key={item.id}>{item.name}<input type="text" /> </div>
+            })
+          }
+        </div>
+      }
+    }
+    ReactDOM.render(<Mc />, document.getElementById('root'));
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+   <meta charset='UTF-8'>
+   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+   <title>扫地小孩专属模板</title>
+   <script src="../files/react.development.js"></script>
+   <script src="../files/react-dom.development.js"></script>
+   <script src="../files/babel.min.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+   <script type="text/babel">
+    class Mc extends React.Component{
+        /* 
+        在react中也可以将state写在构造器constructor中,constructor方法里面
+        必须实现super方法,否则会报错,如果不手动添加constructor方法,react也会
+        自动生成一个constructor方法,因此在大部分情况下,我们无需写constructor方法,
+        后面的学习我们在class中定义属性和方法直接用属性的新写法,即:
+          属性名=属性值
+        直接这样在class中书写,就可以为组件实例对象添加属性和方法,代码更少,更加方便
+        */
+        constructor(){
+            super();
+            this.state = {
+            num:1,
+            }
+        }
+        
+        
+        add=()=>{
+            /* 
+            setState会触发render方法,从而更新渲染页面
+            */
+            this.setState({
+                num:2
+            })
+            
+        }
+        render(){
+            let {num} = this.state;
+            return(
+                <div>
+                    <div>{num}</div>
+                    <button onClick={this.add}>增加1</button>
+                </div>
+            )
+        }
+    }
+    ReactDOM.render(<Mc />,document.getElementById("app"));
+   </script>
+</body>
+</html>

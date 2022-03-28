@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+   <meta charset='UTF-8'>
+   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+   <title>扫地小孩专属模板</title>
+   <script src="../files/react.development.js"></script>
+   <script src="../files/react-dom.development.js"></script>
+   <script src="../files/babel.min.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+   <script type="text/babel">
+    class Mc extends React.Component{
+       foo1(){
+          console.log('foo1的this指向:',this);
+       }
+       foo2(){
+          console.log('foo2的this指向:',this);
+       }
+       foo3 = function(){
+          console.log('foo3的this指向:',this);
+       }
+       foo4 = ()=>{
+          console.log('foo4的this指向:',this);
+       }
+       render(){
+          /* 
+            注意:render函数中的this指向组件实例对象
+          */
+          console.log('render中的this指向:',this);
+          /* 
+          1.onClick={this.foo1()},onClick绑定的是函数foo1的执行,该
+          函数没有设置返回值,因此onClick绑定的是undefined,并且
+          绑定前会执行一次foo1函数,所以进入页面就会打印this,this
+          指向函数的直接调用者Mc实例;
+          2.onClick={this.foo2},onClick绑定了一个回调函数,回调函数
+          this应该为window,但是class方法内部开启了严格模式,因此this
+          为undefined
+          3.onClick={this.foo3},解释同上
+          4.onClick={this.foo4},onClick绑定了一个箭头函数作为回调函数,
+          箭头函数没有自己的this,它的this等于外部函数的this,这里的this
+          是组件实例对象(记下来)
+
+          !总结:
+            # 1.render方法中的this指向组件实例对象
+            # 2.当方法用箭头函数定义时,this指向组件实例,否则指向undefined
+          */
+          return (
+             <div>
+               <button onClick={this.foo1()}>按钮1</button>
+               <button onClick={this.foo2}>按钮2</button>
+               <button onClick={this.foo3}>按钮3</button>
+               <button onClick={this.foo4}>按钮4</button>
+             </div>
+             
+            )
+       }
+    }
+    ReactDOM.render(vdom,document.getElementById("app"));
+   </script>
+</body>
+</html>

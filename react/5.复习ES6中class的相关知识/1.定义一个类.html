@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+   <meta charset='UTF-8'>
+   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+   <title>扫地小孩专属模板</title>
+</head>
+<body>
+   <script>
+    class Person{
+       constructor(name,age){
+         this.name = name;
+         this.age = age;
+       }
+       eat(){
+         console.log(this);
+       }
+    }
+    let p = new Person('刘备',18);
+    //实例调用方法,方法中的this指向实例对象
+    p.eat();
+
+    /* 
+    调用x属于普通函数执行,this应该指向window,但是由于class方法中开启了局部严格模式
+    this不允许指向window,此时的this是undefined 
+    */
+    let x = p.eat;
+    x();
+   </script>
+</body>
+</html>

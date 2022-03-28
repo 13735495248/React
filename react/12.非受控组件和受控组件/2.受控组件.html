@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+   <meta charset='UTF-8'>
+   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+   <title>扫地小孩专属模板</title>
+   <script src="../files/react.development.js"></script>
+   <script src="../files/react-dom.development.js"></script>
+   <script src="../files/babel.min.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+   <script type="text/babel">
+    class Mc extends React.Component{
+        state={
+            msg:'',
+        }
+        change=(event)=>{
+            this.setState({
+                msg:event.target.value
+            })
+            
+        }
+        render(){
+            /* 
+            受控组件:
+              表单元素内容受react控制,我们称为受控组件,类似vue中的input数据双向绑定
+              通过onChange事件监听input输入,监听到数据变化后直接更新state中的数据
+            */
+            const {msg} = this.state;
+            return(
+                <div>
+                    <div>msg:{msg}</div>
+                    <input onChange={this.change} type="text" />
+                </div>
+            )
+        }
+    }
+    ReactDOM.render(<Mc />,document.getElementById("app"));
+   </script>
+</body>
+</html>

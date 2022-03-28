@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>扫地小孩专属模板</title>
+</head>
+
+<body>
+    <script>
+        /* 
+        this本质是一个对象,
+        this指向那个 直接 调用它的对象
+        */
+
+        //1.普通函数调用,this指向window
+        function foo() {
+            console.log(this);
+        }
+        foo();
+
+        //2.回调函数,this指向window
+        setTimeout(function () {
+            console.log(this);
+        }, 0);
+
+        /* 
+        3.构造函数中,this指向实例
+        因为new关键字将this指向了实例
+        */
+        function Person() {
+            console.log(this);
+        }
+        let p = new Person();
+
+        class Student{
+            /* 
+            es6的class中this也是指向实例对象
+            es6class是es5构造函数的语法糖,也就是说es6class
+            是在es5的基础上封装的
+            */
+        }
+
+        /*
+        4.箭头函数没有自己的this,箭头函数中的this和外层函数的this相同,
+        如果外层没有函数,则箭头函数this指向window
+        */
+        var age = 99;
+        var obj = {
+            age: 1,
+            sayhi: () => {
+                console.log(this.age);
+            }
+        }
+        obj.sayhi();
+    </script>
+</body>
+
+</html>

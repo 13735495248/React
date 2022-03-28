@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+   <meta charset='UTF-8'>
+   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+   <title>扫地小孩专属模板</title>
+   <script src="../files/react.development.js"></script>
+   <script src="../files/react-dom.development.js"></script>
+   <script src="../files/babel.min.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+   <script type="text/babel">
+    class Mc extends React.Component{
+        /* 
+        ES6中class属性的新写法
+        这样写给实例对象添加了一个属性state
+        */
+        state = {
+            num:1
+        }
+        /* 
+        点击按钮给num加1
+        注意:这里一定要写成箭头函数,箭头函数形式的方法,this指向实例对象
+        */
+        add=()=>{
+            /* 
+            这里num加1页面并不会变化,为什么呢?
+            和vue不同的是在,react中直接修改state中的数据是不会触发页面更新的,
+            我们需要借助setState方法去修改数据,setState方法会触发页面更新.
+            */
+            this.state.num = 2;
+            console.log('num:',this.state.num);
+        }
+        render(){
+            /* 组件实例上有个属性state用来存储数据和数据 */
+            console.log(this);
+            let {num} = this.state;
+            return(
+                <div>
+                    <div>{num}</div>
+                    <button onClick={this.add}>增加1</button>
+                </div>
+            )
+        }
+    }
+    ReactDOM.render(<Mc />,document.getElementById("app"));
+   </script>
+</body>
+</html>

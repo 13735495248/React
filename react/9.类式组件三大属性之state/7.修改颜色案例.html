@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>扫地小孩专属模板</title>
+    <script src='https://cdn.staticfile.org/react/16.8.0/umd/react.development.js'></script>
+    <script src='https://cdn.staticfile.org/react-dom/16.8.0/umd/react-dom.development.js'></script>
+    <script src='https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.7.2/prop-types.js'></script>
+    <style>
+        .red {
+            color: red;
+        }
+
+        .blue {
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div id='root'>
+
+    </div>
+    <script type='text/babel'>
+        class Mc extends React.Component {
+            state = {
+                flag: true
+            };
+            change = () => {
+                let { flag } = this.state;
+                this.setState({
+                    flag: !flag
+                });
+            };
+            render() {
+                let { flag } = this.state;
+                return (
+                    <div>
+                        <div
+                            className={flag ? 'red' : 'blue'}
+                            style={{ 'background-color': 'skyblue' }}>hello react</div>
+                        <button onClick={this.change}>切换颜色</button>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<Mc />, document.getElementById('root'));
+    </script>
+</body>
+
+</html>

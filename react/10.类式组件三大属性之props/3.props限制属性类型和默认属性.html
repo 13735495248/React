@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+   <meta charset='UTF-8'>
+   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+   <title>扫地小孩专属模板</title>
+   <script src="../files/react.development.js"></script>
+   <script src="../files/react-dom.development.js"></script>
+   <script src="../files/babel.min.js"></script>
+   <!-- props数据类型限制库 -->
+   <script src="../files/prop-types.js"></script>
+</head>
+<body>
+   <div id="app"></div>
+   <script type="text/babel">
+    class Mc extends React.Component{
+        render(){
+            let {name,age} = this.props;
+            console.log('this:',this);
+            return(
+                <div>
+                    <div>姓名:{name}</div>
+                    <div>年龄:{age}</div>
+                </div>
+            )
+        }
+    }
+    //设置数据类型和是否必传
+    Mc.propTypes = {
+        /*
+        string:name是字符串,isRequired:name必传.
+        react将原生类型String开头小写
+        变成string,避免和原生冲突,其他数据类型也是如此操作的
+        */
+        name:PropTypes.string.isRequired,
+        /* age是数字非必传 */
+        age:PropTypes.number,
+       /* 
+       注意:这里写func不能写function,因为会和原生冲突
+       */
+       eat:PropTypes.func
+    }
+    //设置默认值
+    Mc.defaultProps = {
+        name:'',
+        age:0
+    }
+    let person = {
+        name:'刘备',
+        age:18,
+        eat:function(){
+            console.log('吃饭');
+        }
+    }
+    ReactDOM.render(<Mc {...person} />,document.getElementById("app"));
+   </script>
+</body>
+</html>

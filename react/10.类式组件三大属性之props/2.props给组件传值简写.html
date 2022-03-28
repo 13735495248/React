@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>扫地小孩专属模板</title>
+    <script src="../files/react.development.js"></script>
+    <script src="../files/react-dom.development.js"></script>
+    <script src="../files/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="app1"></div>
+    <div id="app2"></div>
+    <script type="text/babel">
+        class Mc extends React.Component {
+            render() {
+                let { name, age } = this.props;
+                console.log('this:', this);
+                return (
+                    <div>
+                        <div>姓名:{name}</div>
+                        <div>年龄:{age}</div>
+                    </div>
+                )
+            }
+        }
+        let person = {
+            name: '刘备',
+            age: 18
+        }
+        /* 
+          在ES6中不支持对象扩展,...person会报错;
+          支持对象浅拷贝{...person}得到新对象{name:'刘备',age:18}
+
+          注意:
+            react里面的{...person}可不是ES6中的对象浅拷贝,
+            react支持了标签中的对象扩展,{...person}得到的结果是:name="刘备" age=18
+        */
+        ReactDOM.render(<Mc name="刘备" age="18" />, document.getElementById("app1"));
+        ReactDOM.render(<Mc {...person} />, document.getElementById("app2"));
+    </script>
+</body>
+
+</html>

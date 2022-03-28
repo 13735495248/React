@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+   <meta charset='UTF-8'>
+   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+   <title>扫地小孩专属模板</title>
+   <script src="../files/react.development.js"></script>
+   <script src="../files/react-dom.development.js"></script>
+   <script src="../files/babel.min.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+   <script type="text/babel">
+    class Mc extends React.Component{
+        state={
+            msg:''
+        }
+        foo=()=>{
+            this.setState({
+                msg:this.myinput.value
+            })
+            
+        }
+        render(){
+            /* 
+            非受控组件:
+              表单元素内容不受react控制,由用户来控制我们称为非受控组件.
+              通过ref定义名字,当需要使用组件中数据的时候,再去
+              手动获取数据
+            */
+            let {msg} = this.state;
+            return(
+                <div>
+                    <div>msg:{msg}</div>
+                    <input ref={(c)=>{this.myinput = c}} type="text" />
+                    <button onClick={this.foo}>获取输入框内容</button>
+                </div>
+            )
+        }
+    }
+    ReactDOM.render(<Mc />,document.getElementById("app"));
+   </script>
+</body>
+</html>

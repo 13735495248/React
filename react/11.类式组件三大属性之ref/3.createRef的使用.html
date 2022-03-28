@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+   <meta charset='UTF-8'>
+   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+   <title>扫地小孩专属模板</title>
+   <script src="../files/react.development.js"></script>
+   <script src="../files/react-dom.development.js"></script>
+   <script src="../files/babel.min.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+   <script type="text/babel">
+
+    class Mc extends React.Component{
+        myinput = React.createRef();
+        getInputMsg = ()=>{
+            console.log('获取输入框内容:',this.myinput.current);
+        }
+        render(){
+            return(
+                <div>
+                    <input ref={this.myinput} type="text" />
+                    <button onClick={this.getInputMsg}>获取输入框里面的值</button>
+                </div>
+            )
+        }
+    }
+    ReactDOM.render(<Mc />,document.getElementById("app"));
+   </script>
+</body>
+</html>

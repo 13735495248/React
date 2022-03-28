@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+   <meta charset='UTF-8'>
+   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+   <title>扫地小孩专属模板</title>
+   <script src="../files/react.development.js"></script>
+   <script src="../files/react-dom.development.js"></script>
+   <script src="../files/babel.min.js"></script>
+   <style>
+       .default{
+           width: 50px;
+           height: 50px;
+           background-color: #999;
+           border-radius: 25px;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           margin-top: 5px;
+       }
+       .select{
+        background-color: skyblue;
+       }
+   </style>
+</head>
+<body>
+    <div id="app"></div>
+   <script type="text/babel">
+    class Mc extends React.Component{
+        state = {
+            list:[
+                {num:1,select:false},
+                {num:2,select:false},
+                {num:3,select:false},
+                {num:4,select:false},
+                {num:5,select:false},
+            ],
+        }
+        foo=(item)=>{
+            //将点击元素的select属性取反
+            item.select = !item.select;
+            /* 
+            setState传空对象,用来更新一次页面,因为上面的代码item.select = !item.select
+            已经修改过数据了,因此这里setState只需要将修改过的数据更新到页面即可,不用给setState
+            传参数修改了
+             */
+            this.setState({})
+        }
+        render(){
+            let {list} = this.state;
+            return(
+                <div>
+                    {
+                        list.map((item,index)=>{
+                            return <div 
+                            onClick={()=>{this.foo(item)}}
+                            className={item.select?'default select':'default'}
+                            key={index}>
+                            {item.num}
+                            </div>
+                        })
+                    }
+                </div>
+            )
+        }
+    }
+    ReactDOM.render(<Mc />,document.getElementById("app"));
+   </script>
+</body>
+</html>

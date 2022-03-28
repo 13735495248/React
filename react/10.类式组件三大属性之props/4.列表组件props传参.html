@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+   <meta charset='UTF-8'>
+   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+   <title>扫地小孩专属模板</title>
+   <script src="../files/react.development.js"></script>
+   <script src="../files/react-dom.development.js"></script>
+   <script src="../files/babel.min.js"></script>
+   <!-- props数据类型限制库 -->
+   <script src="../files/prop-types.js"></script>
+</head>
+<body>
+   <div id="app"></div>
+   <script type="text/babel">
+    class Mc extends React.Component{
+        render(){
+            let {list} = this.props;
+            return (
+                list.map(item=>{
+                    return (
+                        <div key={item.name}>
+                            <span>{item.name}:</span>
+                            <span>{item.age}</span>
+                        </div>
+                    )
+                })
+            )
+        }
+    }
+    //设置数据类型和是否必传
+    Mc.propTypes = {
+        list:PropTypes.array
+    }
+    //设置默认值
+    Mc.defaultProps = {
+        list:[]
+    }
+    let persons =[
+    {
+        name:'刘备',
+        age:18
+    },
+    {
+        name:'关羽',
+        age:19
+    },
+    {
+        name:'张飞',
+        age:20
+    }
+    ] 
+    ReactDOM.render(<Mc list={persons} />,document.getElementById("app"));
+   </script>
+</body>
+</html>

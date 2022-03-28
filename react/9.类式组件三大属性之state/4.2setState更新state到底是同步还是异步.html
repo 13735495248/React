@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>扫地小孩专属模板</title>
+    <script src='https://cdn.staticfile.org/react/16.8.0/umd/react.development.js'></script>
+    <script src='https://cdn.staticfile.org/react-dom/16.8.0/umd/react-dom.development.js'></script>
+    <script src='https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.7.2/prop-types.js'></script>
+</head>
+
+<body>
+    <div id='root'>
+
+    </div>
+    <script type='text/babel'>
+        class Mc extends React.Component {
+            state = {
+                num: 1
+            }
+            modiData = () => {
+                let { num } = this.state;
+                this.setState({
+                    num: num + 1
+                })
+                console.log('num:', this.state.num);
+            }
+            add = () => {
+                this.modiData();
+            }
+            /* 组件加载完成的生命周期钩子函数 */
+            componentDidMount() {
+                /* 
+                直接在生命周期里面调用setState或者在onClick回调里面执行setState,
+                发现state更新是异步的
+                 */
+                this.modiData();
+                /* 
+                addEventListener监听按钮的点击事件,点击按钮时调用
+                setState的方法,发现state更新是同步的
+                */
+                let btn = document.getElementById('btn');
+                btn.addEventListener('click', this.add);
+
+                /* 
+                在settimeout里面调用setState方法,发现state更新是同步的
+                 */
+                setTimeout(() => {
+                    this.modiData();
+                }, 1000);
+
+                /* 
+                #总结:
+                  setState只在合成事件和钩子函数中是“异步”的,在原生事件和setTimeout 中都是同步的
+                  setState的“异步”并不是说内部由'异步'代码实现,
+                  其实本身执行的过程和代码都是同步的，
+                  只是合成事件和钩子函数的调用顺序在更新之前，
+                  导致在合成事件和钩子函数中没法立马拿到更新后的值，
+                  形式了所谓的“异步”，
+                  当然可以通过第二个参数setState(partialState,callback)中的callback拿到更新后的结果。
+                */
+            }
+            render() {
+                let { num } = this.state;
+                return (
+                    <div>
+                        <div>数字:{num}</div>
+                        <button id='btn'>增加1</button>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<Mc />, document.getElementById('root'));
+    </script>
+</body>
+
+</html>

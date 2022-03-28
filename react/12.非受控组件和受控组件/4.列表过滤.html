@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+   <meta charset='UTF-8'>
+   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+   <title>扫地小孩专属模板</title>
+   <script src="../files/react.development.js"></script>
+   <script src="../files/react-dom.development.js"></script>
+   <script src="../files/babel.min.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    <script type="text/babel">
+    class Mc extends React.Component{
+        state = {
+            //源数组
+            list:[
+                   {id:1,name:'苏轼',age:34},
+                   {id:2,name:'苏辙',age:35},
+                   {id:3,name:'苏洵',age:36},
+                   {id:4,name:'曹操',age:37},
+                   {id:5,name:'曹植',age:38},
+                   {id:6,name:'曹丕',age:39}
+               ],
+               //给搜索用的数组
+               changeAry:[
+                   {id:1,name:'苏轼',age:34},
+                   {id:2,name:'苏辙',age:35},
+                   {id:3,name:'苏洵',age:36},
+                   {id:4,name:'曹操',age:37},
+                   {id:5,name:'曹植',age:38},
+                   {id:6,name:'曹丕',age:39},
+               ]
+        }
+        //监听输入框内容变化,根据输入关键字过滤数组
+        search = (event)=>{
+          const {list} = this.state;
+          let ary = list.filter((item)=>{
+              return item.name.includes(event.target.value);
+          });
+          this.setState({
+              changeAry:ary
+          })
+        }
+        render(){
+            const {changeAry} = this.state;
+            return(
+                <div>
+                    <input placeholder="请输入人名" 
+                    type="text" 
+                    onChange={this.search} />
+                    <ul>
+                    {
+                       changeAry.map(item=>{
+                           return <li key={item.id}>{item.name}</li>
+                       })
+                    }
+                    </ul>
+                </div>
+             
+            )
+        }
+    }
+    ReactDOM.render(<Mc />,document.getElementById("app"));
+   </script>
+</body>
+</html>

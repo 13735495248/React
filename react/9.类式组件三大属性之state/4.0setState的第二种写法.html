@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+   <meta charset='UTF-8'>
+   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+   <title>扫地小孩专属模板</title>
+   <script src="../files/react.development.js"></script>
+   <script src="../files/react-dom.development.js"></script>
+   <script src="../files/babel.min.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+   <script type="text/babel">
+    class Mc extends React.Component{
+        state = {
+            num:1,
+        }
+        
+        add=()=>{
+            /* 
+            setState第二种写法:
+              第一个参数:参数是state并且有返回值的回调函数
+              第二个参数:state更新完的回调
+              这种写法适合需要在原state的基础上进行修改数据的
+              复杂的场景,一般情况下,使用第一种写法,因为其更加简单
+            */
+            this.setState((state)=>{
+                state.num++;
+                return{
+                  num:state.num
+                }
+            },()=>{
+
+            })
+            
+        }
+        render(){
+            let {num} = this.state;
+            return(
+                <div>
+                    <div>{num}</div>
+                    <button onClick={this.add}>增加1</button>
+                </div>
+            )
+        }
+    }
+    ReactDOM.render(<Mc />,document.getElementById("app"));
+   </script>
+</body>
+</html>

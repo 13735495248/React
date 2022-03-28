@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+   <meta charset='UTF-8'>
+   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+   <title>扫地小孩专属模板</title>
+   <script src="../files/react.development.js"></script>
+   <script src="../files/react-dom.development.js"></script>
+   <script src="../files/babel.min.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    <script type="text/babel">
+    const list = ['苹果','梨子','葡萄','香蕉']
+    const vdom = (
+        /* 
+          插值表达式里面是一个数组,数组元素是标签,
+          react会自动将数组里面的标签元素对象渲染到页面
+        */
+        <ul>
+            {
+                list.map((item,index)=>{
+                    return <li key={index}>{item}</li>
+                })
+            }
+        </ul>
+        );
+    ReactDOM.render(vdom,document.getElementById("app"));
+   </script>
+</body>
+</html>

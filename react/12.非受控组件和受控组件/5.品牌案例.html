@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+   <meta charset='UTF-8'>
+   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+   <title>扫地小孩专属模板</title>
+   <script src="../files/react.development.js"></script>
+   <script src="../files/react-dom.development.js"></script>
+   <script src="../files/babel.min.js"></script>
+   <style>
+       .header{
+           display: flex;
+           width: 600px;
+           margin-top: 10px;
+           background-color: skyblue;
+       }
+       .header .item{
+           flex: 1;
+           display: flex;
+           justify-content: center;
+       }
+       .content{
+           display: flex;
+           width: 600px;
+           margin-top: 10px;
+       }
+       .content .item{
+           flex: 1;
+           display: flex;
+           justify-content: center;
+       }
+   </style>
+</head>
+<body>
+    <div id="app"></div>
+    <script type="text/babel">
+    class Mc extends React.Component{
+        state={
+            //源数组,主要在搜索的时候保存原来的品牌数据
+            list:[
+                { name: '宝马', id: 1 },
+                { name: '大众', id: 2 },
+                { name: '奔驰', id: 3 }
+            ],
+            //数据变化之后的数组
+            changeAry:[
+            { name: '宝马', id: 1 },
+            { name: '大众', id: 2 },
+            { name: '奔驰', id: 3 }
+            ]
+        }
+        /* 添加品牌 */
+        add = ()=>{
+            let {list,changeAry} = this.state;
+            // 获取输入框中的id
+            let id = this.idinput.value;
+            // 获取输入框中的name
+            let name = this.nameinput.value;
+            //判断数组中是否存在该id的品牌
+            let flag = changeAry.find(item=>{
+                return item.id == id;
+            })
+            //如果存在,alert提示该品牌已经存在
+            if(flag){
+              alert('该品牌已经存在');
+              return;
+            }
+            //如果id没有重复,给数组中添加一个品牌对象
+            changeAry.push({id,name});
+            list.push({id,name})
+            /* 
+            更新页面,为什么setState里面不用修改list和changeAry?
+            我们说过setState有两个作用1.修改数据2.更新页面,因为上面list和
+            changAry已经通过push修改过了,所以我们只需要重新渲染页面即可,
+            不用再在setState里面修改了,当然如果你不知道什么时候可以省略setState
+            里面的修改,索引就别省略,只要state里面的数据变化了,你就在setState参数里面
+            修改.
+            */
+            this.setState({})
+        }
+
+        /* 删除品牌 */
+        dele = (index)=>{
+            const {list,changeAry} = this.state;
+            changeAry.splice(index,1);
+            list.splice(index,1);
+            this.setState({});
+        }
+        /* 搜索事件 */
+        search = (event)=>{
+            let {changeAry,list} = this.state;
+            //获取搜索框内容
+            let keywords = event.target.value;
+            //根据关键词过滤list数组
+            changeAry = list.filter((item)=>{
+                return item.name.includes(keywords);
+            })
+            console.log(changeAry);
+            /* 
+            将过滤完的数组赋值给changeAry
+            注意:
+              这里一定不能修改源数组list,一旦你把list修改了,当搜索框为空时,
+              再也不会显示完整的品牌列表了
+            */
+            this.setState({
+                changeAry
+            })
+        }
+        render(){
+            const {changeAry} = this.state;
+            
+            return(
+                <div>
+                    id:&nbsp;
+                    <input ref={(c)=>{this.idinput = c}} type="text" />
+                    &nbsp;name:&nbsp;
+                    <input ref={(c)=>{this.nameinput = c}} type="text" />
+                    &nbsp;<button onClick={this.add}>添加</button>&nbsp;
+                    搜索名称关键字:&nbsp;
+                    <input onChange={this.search} type="text" />
+                    <div className="header">
+                        <div className='item'>id</div>
+                        <div className='item'>name</div>
+                        <div className='item'>选项</div>
+                    </div>
+                    
+                        {
+                            changeAry.map((item,index)=>{
+                                return (
+                                <div className="content" key={item.id}>
+                                    <div className='item'>{item.id}</div>
+                                    <div className='item'>{item.name}</div>
+                                    <div 
+                                    className='item' 
+                                    onClick={()=>{this.dele(index)}}
+                                    style={{color:'blue'}}>
+                                    删除
+                                    </div>
+                                </div>
+                                )
+                            })
+                        }
+                        
+                </div>
+            )
+        }
+    }
+    ReactDOM.render(<Mc />,document.getElementById("app"));
+   </script>
+</body>
+</html>

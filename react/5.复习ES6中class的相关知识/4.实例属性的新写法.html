@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+   <meta charset='UTF-8'>
+   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+   <title>扫地小孩专属模板</title>
+</head>
+<body>
+   <script>
+    class Person{
+       name = '刘备';
+       age = 18;
+       eat = function(){
+         /* 
+         this指向实例对象:
+           因为p调用了eat函数,this指向直接调用它的对象,
+           因此this指向p
+         */
+         console.log('eat的this:',this);
+       };
+       
+       drink = ()=>{
+          /* 
+          this指向实例对象(重要):
+            drink是箭头函数,它没有自己的this,它的this指向和外层函数this相同,
+            我们需要找到drink的外层函数,我们发现drink是在class Person{}内部,而class
+            经过es6的封装我们看不出其真正的结构,我们之前讲过class是es5构造函数
+            封装来的,而构造函数内部的this指向实例对象,因此drink的this也指向实例对象
+           */
+          console.log('drink的this:',this);
+       }
+    }
+    let p = new Person();
+    p.eat();
+    p.drink();
+   </script>
+</body>
+</html>

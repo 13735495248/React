@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+   <meta charset='UTF-8'>
+   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>扫地小孩专属模板</title>
+<script src='https://cdn.staticfile.org/react/16.8.0/umd/react.development.js'></script>
+<script src='https://cdn.staticfile.org/react-dom/16.8.0/umd/react-dom.development.js'></script>
+<script src='https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.7.2/prop-types.js'></script>
+</head>
+<body>
+<div id='root'>
+        
+</div>
+   <script type='text/babel'>
+   class Mc extends React.Component{
+       list = [
+       <div key='1'>关羽</div>,
+       <div key='2'>张飞</div>,
+       <div key='3'>赵云</div>,
+       <div key='4'>马超</div>,
+       <div key='5'>黄忠</div>,
+      ];
+       render(){
+       return (
+           <div>
+            {
+                this.list
+                
+            }
+           </div>
+       )
+      }
+    }
+   ReactDOM.render(<Mc/>,document.getElementById('root'));
+   </script>
+</body>
+</html>

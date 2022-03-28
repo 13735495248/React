@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+   <meta charset='UTF-8'>
+   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+   <title>扫地小孩专属模板</title>
+   <script src="../files/react.development.js"></script>
+   <script src="../files/react-dom.development.js"></script>
+   <script src="../files/babel.min.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    <script type="text/babel">
+    class Mc extends React.Component{
+        state = {
+            firstname:'',
+            lastname:'',
+            fullname:''
+        }
+        //监听姓变化的事件方法
+        firstMsg = (event)=>{
+          this.setState({
+              firstname:event.target.value
+          })
+        }
+        //监听名变化的事件方法
+        lastMsg = (event)=>{
+          this.setState({
+              lastname:event.target.value
+          })
+        }
+        render(){
+            const {firstname,lastname} = this.state;
+            return(
+                <div>
+                    <div>
+                    姓:<input onChange={this.firstMsg} type="text" />
+                    </div>
+                    <div>
+                    名:<input onChange={this.lastMsg} type="text" />
+                    </div>
+                    <div>
+                    姓名:{firstname}{lastname}
+                    </div>
+                </div>
+                
+            )
+        }
+    }
+    ReactDOM.render(<Mc />,document.getElementById("app"));
+   </script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+   <meta charset='UTF-8'>
+   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+   <title>扫地小孩专属模板</title>
+   <script src='https://cdn.staticfile.org/react/16.8.0/umd/react.development.js'></script>
+   <script src='https://cdn.staticfile.org/react-dom/16.8.0/umd/react-dom.development.js'></script>
+   <script src='https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js'></script>
+   <script src='https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.7.2/prop-types.js'></script>
+</head>
+<body>
+<div id='root'>
+        
+</div>
+   <script type='text/babel'>
+    /* 
+    练习:
+     将下面的数组渲染成无序列表呈现在页面上
+    */
+   let list = [
+       {name:'刘备',age:18},
+       {name:'关羽',age:19},
+       {name:'张飞',age:20}
+   ]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   let vnode = (
+       <div>
+        <ul>
+            {
+            list.map(item=>{
+                return <li>姓名:{item.name},年龄:{item.age}</li>
+            })
+            }
+        </ul>
+        
+       </div>
+   )
+   ReactDOM.render(vnode,document.getElementById('root'));
+   </script>
+</body>
+</html>

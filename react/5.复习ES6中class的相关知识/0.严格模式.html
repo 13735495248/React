@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+   <meta charset='UTF-8'>
+   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+   <title>扫地小孩专属模板</title>
+</head>
+<body>
+   <script>
+    /* 
+    使用 "use strict" 可以开启严格模式
+      1.严格模式下你不能使用未声明的变量
+      2.严格模式下,函数中的this不允许指向window,this为undefined
+    */
+
+    /* 
+    全局严格模式:在整个script标签体开启严格模式 
+    注意:
+      要在最上方加 "use strict" 开启严格模式,否则会失效
+    */
+    //"use strict"
+    //x = 5;
+   
+   /* 局部严格模式:在函数内部开启严格模式 */
+       function foo(){
+        "use strict"
+        console.log('this:',this);
+       }
+       //this本来指向window,但是foo开启了局部严格模式,导致this指向undefined
+       foo();
+   </script>
+</body>
+</html>

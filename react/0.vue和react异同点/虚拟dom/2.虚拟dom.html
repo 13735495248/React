@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+   <meta charset='UTF-8'>
+   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<title>扫地小孩专属模板</title>
+</head>
+<body>
+   
+      <!-- 真实dom -->
+      <button class="btn">
+         <div>确认</div>
+      </button>
+   
+   <script>
+       
+       
+       //虚拟dom其实是一个对象
+       var vnode = {
+                  type: 'button',
+                  props: {
+                  className: 'btn',
+                  children: [{
+                  type: 'div',
+                  props: {
+                  children: '确认'
+                  }
+                  }]
+                  }
+               }
+       
+       /*
+       虚拟dom提升渲染效率的原理?
+       vue默认会把dom节点树转换成一个对象,对象的结构和dom节点树结构相似,这个对象我们称为虚拟dom,
+       当页面发生变化时,比如页面上显示的内容变了,或者页面多添加几个div元素,vue会生成一个新的虚拟dom,
+       并且通过 diff算法 去比对新旧虚拟dom,找到变化的部分去修改变化部分的真实dom,这样就避免了修改所有的
+       真实dom,减少了dom操作次数,提高了渲染的效率
+       */
+
+
+       
+   </script>
+</body>
+</html>

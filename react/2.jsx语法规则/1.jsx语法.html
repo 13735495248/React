@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>扫地小孩专属模板</title>
+    <script src="../files/react.development.js"></script>
+   <script src="../files/react-dom.development.js"></script>
+   <script src="../files/babel.min.js"></script>
+    <style>
+        .redcolor {
+            background-color: #ff0000;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="root">
+
+    </div>
+
+
+
+    <script type="text/babel">
+
+        const msg = 'hello react';
+        let vdom =
+            <div style={{ color: 'blue' }} className="redcolor">
+                <div>{msg}</div>
+                <div>123</div>
+                <input type="text"/>
+            </div>
+
+        ReactDOM.render(vdom, document.getElementById('root'));
+
+
+        /*
+        jsx语法:(两dom,两标签,类名,内联,首大小)
+        1.定义虚拟dom时不要加引号
+        2.虚拟dom只能有一个根标签
+        3.标签必须闭合
+        4.标签中使用js数据要用react的插值表达式:{表达式},
+        类似vue中的插值表达式{{表达式}}
+        5.样式的类名指定不能用class,要用className
+        className='类名'或者 className={字符串表达式}
+        6.内联样式,要用style={{属性:字符串值}}的形式去写
+        注意:
+        这里的{{}}和vue的插值表达式不是一个东西,
+        react的插值表达式始终是单花括号{},style={{属性:字符串值}}
+        可以理解成在react插值表达式{}中使用了一个对象{属性:字符串值}
+        7.标签首字母
+          (1)若小写字母开头，会寻找html中同名元素，找不到则报错
+          (2)若大写字母开头，会寻找组件，找不到报错undefined
+        */
+
+        /*
+        React中的jsx和Vue中的模板语法有什么区别
+          React中的jsx或者渲染函数更加动态,可以更自由的使用编程语言,你可以做任何你想做的事情,
+          只要你能用代码实现,这就摆脱了发明新语法和模板,以便完成一些复杂的渲染要求
+    
+          Vue中的模板语法更加静态,模板语法相近,任何HTML解析器都可以解析他们,所以你可以快速
+          迁移现有模板,例如UI设计师给的设计图,你可以快速用代码实现.代码你更加熟悉一点,更重要的是,
+          模板的静态性质更容易优化编译,jsx的动态性质使得优化更加困难.由于模板受到限制,当你编译时,
+          这些限制实际上会带来好处,因为只能以这种方式写模板,所以在编译时可以进行更多优化.
+        */
+
+    </script>
+
+</body>
+
+</html>

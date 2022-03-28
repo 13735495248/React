@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>扫地小孩专属模板</title>
+    <script src="../files/react.development.js"></script>
+    <script src="../files/react-dom.development.js"></script>
+    <script src="../files/babel.min.js"></script>
+</head>
+
+<body>
+    <div id='root'>
+
+    </div>
+    <script type='text/babel'>
+
+        function Mc(props) {
+            /* 
+            props是一个对象,通过props可以获取到父组件
+            传递的属性参数
+            */
+            const { name,age } = props;
+            return (
+                <div>
+                    {/* 这里测试下jsx对象扩展的结果是什么 */}
+                    <div {...person}></div>
+                    <div>姓名:{name}</div>
+                    <div>年龄:{age}</div>
+                </div>
+            )
+        }
+        let person = {
+            name:'刘备',
+            age:18
+        }
+        /* 
+        扩展运算符...复习:
+          ...ary 作用是扩展数组
+          {...obj} 作用是浅拷贝对象
+          ...obj 这样写报错,因为对象不支持扩展运算
+        */
+
+        /* 
+        下面传参的写法的意思是:
+          在插值表达式{}中使用对象扩展...person,我们刚说过js不支持
+          对象扩展,为啥这里可以这样写,因为jsx支持了对象扩展,jsx会将
+          {...person}转换为属性 name='刘备' age=18
+        */
+        ReactDOM.render(<Mc {...person} />, document.getElementById('root'))
+
+    </script>
+</body>
+
+</html>

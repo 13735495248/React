@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>扫地小孩专属模板</title>
+    <script src="../files/react.development.js"></script>
+    <script src="../files/react-dom.development.js"></script>
+    <script src="../files/babel.min.js"></script>
+</head>
+
+<body>
+    <div id='root'>
+
+    </div>
+    <script type='text/babel'>
+        class Mc extends React.Component {
+            state = {
+                count: 1
+            }
+
+            //数字增加1
+            add = () => {
+                let { count } = this.state;
+                count++;
+                this.setState({ count });
+            }
+            //卸载组件
+            deletemsg = () => {
+                ReactDOM.unmountComponentAtNode(document.getElementById('root'))
+            }
+
+            //强制更新
+            force = () => {
+                this.forceUpdate();
+            }
+
+            //组件挂载完成
+            componentDidMount() {
+                console.log('componentDidMount');
+            }
+            //组件完成更新
+            componentDidUpdate(prevProps, prevState) {
+                console.log('componentDidUpdate');
+            }
+
+            //组件将要卸载
+            componentWillUnmount() {
+                console.log('componentWillUnmount');
+            }
+
+            render() {
+                console.log('render');
+                return <div>
+                    <div>数字{this.state.count}</div>
+                    <button onClick={this.add}>增加1</button>
+                    <button onClick={this.deletemsg}>卸载组件</button>
+                    <button onClick={this.force}>强制更新</button>
+                </div>
+            }
+        }
+        ReactDOM.render(<Mc />, document.getElementById('root'));
+    </script>
+</body>
+
+</html>

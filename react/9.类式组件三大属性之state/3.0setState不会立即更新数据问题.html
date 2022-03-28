@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>扫地小孩专属模板</title>
+    <script src="../files/react.development.js"></script>
+    <script src="../files/react-dom.development.js"></script>
+    <script src="../files/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script type="text/babel">
+
+        class Mc extends React.Component {
+            state = {
+                num: 1,
+                name: '刘备'
+            }
+
+            add = () => {
+                this.setState({
+                    num: 2
+                }, () => {
+                    /* 
+                    setState第一个参数是要修改的state对象
+                    setState第二个参数是一个异步回调函数,
+                    该回调会在state更新完之后触发,因此第一次点击按钮打印的是2
+    
+                    注意:
+                    setState传入的第一个参数是一个对象,该对象会和
+                    原state对象合并而不是替换原对象
+                    */
+                    console.log('state:', this.state);
+                    console.log('num1:', this.state);
+                })
+                /* 
+                setState更新页面是异步操作,修改完数据不会立刻更新
+                因此第一次点击按钮打印的还是1
+                */
+                console.log('num:', this.state.num);
+
+            }
+            render() {
+                let { num } = this.state;
+                return (
+                    <div>
+                        <div>{num}</div>
+                        <button onClick={this.add}>增加1</button>
+                        <button onclick='myadd()'>增加1</button>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<Mc />, document.getElementById("app"));
+    </script>
+</body>
+
+</html>
