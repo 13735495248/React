@@ -1,0 +1,10 @@
+.add{
+    display: flex;
+    padding: 5px;
+}
+.add .ant-btn{
+    margin-left: 5px;
+}
+.add input{
+    flex: 1;
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+   <meta charset='UTF-8'>
+   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+   <title>扫地小孩专属模板</title>
+</head>
+<body>
+   <script>
+    /* 
+    函数式编程是和面向对象编程,面向过程编程并列的编程范式.
+    例如我们学过的数组的map,filter,reduce函数就满足函数式编程的特点,
+    那么函数式编程有哪些特点呢?
+      1.函数是第一等公民,函数可以用作参数,变量,返回值
+      2.在纯种的函数式编程语言中,数据是不可变的,
+      或者说没有变量这个概念,所有的数据一旦产生,
+      就不能改变其中的值,如果要改变,那就只能生成一个新的数据
+
+      例如数组的map,reduce,filter方法就符合这个特点,它们不会修改原数组,而是生成
+      一个新数组,因此我们称他们为函数式编程,而数组的push,splice会修改原数组,因此,
+      他们就不属于函数式编程的思想.
+
+      再例如react的props不允许修改,也是利用了函数式编程的思想
+      我们需要学习的redux,useState都用到了函数式编程数据不可变的思想
+    */
+
+    /* 
+    例:
+      下面两个函数哪个更符合函数式编程的思想,为什么?
+    */
+    function modiState(state){
+      state.age++;
+      return state;
+    }
+
+    function modiState1(state){
+        return {...state,age:state.age+1}
+    }
+    let s = {name:'刘备',age:18};
+    modiState(s);
+    modiState1(s);
+    
+   </script>
+</body>
+</html>

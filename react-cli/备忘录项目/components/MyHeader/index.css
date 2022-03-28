@@ -1,0 +1,17 @@
+.myheader{
+    background-color: #39a8d4;
+    height: 40px;
+    color: white;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.myheader img{
+    position: absolute;
+    right: 10px;
+    top: 7.5px;
+    bottom: 7.5px;
+    width: 25px;
+    height: 25px;
+}
